@@ -37,7 +37,7 @@ An API template written in Python that includes authentication using JSON web to
 git clone https://github.com/christophernajafi/flask-api-template
 
 # Install packages
-pip3 install flask flask-restful flask-jwt pyjwt flask-jwt-extended flask_sqlalchemy
+pip3 install flask flask-restful flask-jwt pyjwt flask_sqlalchemy
 
 # Run app locally
 python3 app.py

@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-from flask_jwt_extended import jwt_required, get_jwt_claims, get_jwt_identity, jwt_optional, fresh_jwt_required
+from flask_jwt import jwt_required
 from models.item import ItemModel
 
 
@@ -13,17 +13,16 @@ class Item(Resource):
     parser.add_argument('store_id',
                         type=int,
                         required=True,
-                        help="Every item needs a store_id."
+                        help="Every item needs a store id."
                         )
 
-    @jwt_required  # No longer needs brackets
+    @jwt_required()
     def get(self, name):
         item = ItemModel.find_by_name(name)
         if item:
             return item.json()
         return {'message': 'Item not found'}, 404
 
-    @fresh_jwt_required
     def post(self, name):
         if ItemModel.find_by_name(name):
             return {'message': "An item with name '{}' already exists.".format(name)}, 400
@@ -39,27 +38,22 @@ class Item(Resource):
 
         return item.json(), 201
 
-    @jwt_required
     def delete(self, name):
-        claims = get_jwt_claims()
-        if not claims['is_admin']:
-            return {'message': 'Admin privilege required.'}, 401
-
         item = ItemModel.find_by_name(name)
         if item:
             item.delete_from_db()
-            return {'message': 'Item deleted.'}
-        return {'message': 'Item not found.'}, 404
+
+        return {'message': 'Item deleted'}
 
     def put(self, name):
         data = Item.parser.parse_args()
 
         item = ItemModel.find_by_name(name)
 
-        if item:
-            item.price = data['price']
-        else:
+        if item is None:
             item = ItemModel(name, **data)
+        else:
+            item.price = data['price']
 
         item.save_to_db()
 
@@ -67,22 +61,5 @@ class Item(Resource):
 
 
 class ItemList(Resource):
-    @jwt_optional
     def get(self):
-        """
-        Here we get the JWT identity, and then if the user is logged in (we were able to get an identity)
-        we return the entire item list.
-
-        Otherwise we just return the item names.
-
-        This could be done with e.g. see orders that have been placed, but not see details about the orders
-        unless the user has logged in.
-        """
-        user_id = get_jwt_identity()
-        items = [item.json() for item in ItemModel.find_all()]
-        if user_id:
-            return {'items': items}, 200
-        return {
-            'items': [item['name'] for item in items],
-            'message': 'More data available if you log in.'
-        }, 200
+        return {'items': [x.json() for x in ItemModel.query.all()]}
