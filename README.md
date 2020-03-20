@@ -6,7 +6,7 @@ An API template written in Python that includes authentication using JSON web to
 
 ## Deployed Link on Heroku
 
-<https://flask-api-cn.herokuapp.com/>
+<https://flask-api-template-cn.herokuapp.com/>
 
 ## Technology Stack
 
