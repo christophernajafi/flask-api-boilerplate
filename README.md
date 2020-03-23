@@ -87,12 +87,12 @@ postman.setEnvironmentVariable("jwt_token", jsonData.access_token);
 # Clone repo
 git clone https://github.com/christophernajafi/flask-api-template
 
+# Change directory
+cd flask-api-template
+
 # Install packages
 pip3 install flask flask-restful flask-jwt pyjwt flask_sqlalchemy
 
 # Start app
 python3 app.py
 ```
-
-<!-- # Make sure PostgreSQL is running
-# Create database called 'flask-api' -->
