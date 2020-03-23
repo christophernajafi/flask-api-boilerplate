@@ -68,7 +68,7 @@ git clone https://github.com/christophernajafi/flask-api-template
 # Install packages
 pip3 install flask flask-restful flask-jwt pyjwt flask_sqlalchemy
 
-# Run app locally
+# Start app
 python3 app.py
 ```
 
