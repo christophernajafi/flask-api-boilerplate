@@ -38,6 +38,22 @@ const jsonData = JSON.parse(responseBody);
 tests["Access token was not empty."] = jsonData.access_token !== undefined;
 postman.setEnvironmentVariable("jwt_token", jsonData.access_token);
 
+// URL: https://flask-api-template-cn.herokuapp.com/stores
+// Type: GET
+// Returns an array of stores
+
+// URL: https://flask-api-template-cn.herokuapp.com/store/<name>
+// Type: POST
+// Add a store
+
+// URL: https://flask-api-template-cn.herokuapp.com/store/<name>
+// Type: GET
+// Returns data on specific store
+
+// URL: https://flask-api-template-cn.herokuapp.com/store/<name>
+// Type: DELETE
+// Delete specific store
+
 // URL: https://flask-api-template-cn.herokuapp.com/items
 // Type: GET
 // Returns an array of items
@@ -60,24 +76,9 @@ postman.setEnvironmentVariable("jwt_token", jsonData.access_token);
 // Body:
 {
   "name": "exampleNameOfItem",
-  "price": 9.99
+  "price": 9.99,
+  "store_id": 1
 }
-
-// URL: https://flask-api-template-cn.herokuapp.com/stores
-// Type: GET
-// Returns all stores
-
-// URL: https://flask-api-template-cn.herokuapp.com/store/<name>
-// Type: POST
-// Add a store
-
-// URL: https://flask-api-template-cn.herokuapp.com/store/<name>
-// Type: GET
-// Returns data on specific store
-
-// URL: https://flask-api-template-cn.herokuapp.com/store/<name>
-// Type: DELETE
-// Delete specific store
 ```
 
 ## Running App Locally
