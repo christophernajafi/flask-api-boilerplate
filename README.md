@@ -47,6 +47,14 @@ postman.setEnvironmentVariable("jwt_token", jsonData.access_token);
 // Returns data on specific item
 
 // URL: https://flask-api-template-cn.herokuapp.com/item/<name>
+// Type: PUT
+// Updates data on specific item
+
+// URL: https://flask-api-template-cn.herokuapp.com/item/<name>
+// Type: DELETE
+// Deletes specific item
+
+// URL: https://flask-api-template-cn.herokuapp.com/item/<name>
 // Type: POST
 // Posts a new item to the store
 // Body:
@@ -55,8 +63,21 @@ postman.setEnvironmentVariable("jwt_token", jsonData.access_token);
   "price": 9.99
 }
 
-// URL: https://flask-api-template-cn.herokuapp.com/item/<name>
+// URL: https://flask-api-template-cn.herokuapp.com/stores
+// Type: GET
+// Returns all stores
+
+// URL: https://flask-api-template-cn.herokuapp.com/store/<name>
+// Type: POST
+// Add a store
+
+// URL: https://flask-api-template-cn.herokuapp.com/store/<name>
+// Type: GET
+// Returns data on specific store
+
+// URL: https://flask-api-template-cn.herokuapp.com/store/<name>
 // Type: DELETE
+// Delete specific store
 ```
 
 ## Running App Locally
